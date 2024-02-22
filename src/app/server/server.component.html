@@ -1,1 +1,10 @@
-<p>Server is on</p>
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onButtonClickHandler()"
+>
+  Add Server
+</button>
+<input type="text" (input)="onType($event)" [(ngModel)]="serverName" />
+<p>{{ serverStatus }}</p>
+<p>{{ serverName }}</p>
