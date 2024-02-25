@@ -1,10 +1,32 @@
-<button
-  class="btn btn-primary"
-  [disabled]="!allowNewServer"
-  (click)="onButtonClickHandler()"
->
-  Add Server
-</button>
-<input type="text" (input)="onType($event)" [(ngModel)]="serverName" />
+<div class="row mb-3">
+  <div class="col-2">
+    <button
+      class="btn btn-primary"
+      [disabled]="!allowNewServer"
+      (click)="onButtonClickHandler()"
+    >
+      Add Server
+    </button>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-2">
+    <button class="btn btn-secondary" (click)="onUpdateServer()">
+      Check for updates
+    </button>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-1">
+    <input type="text" (input)="onType($event)" [(ngModel)]="serverName" />
+  </div>
+</div>
 <p>{{ serverStatus }}</p>
-<p>{{ serverName }}</p>
+<p *ngIf="serverUpdated; else noUpdate">{{ serverName }} has a new update!</p>
+<ng-template #noUpdate>
+  <p>Server currently has the latest update.</p>
+</ng-template>
+<p [ngStyle]="{ backgroundColor: getColor() }">Server Capacity Level</p>
+<p [ngClass]="{ atCapacity: serverCapacity === 'High' }">Server 2 Capacity</p>
